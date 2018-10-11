@@ -1,0 +1,74 @@
+<html>
+	<head></head>
+	<body>
+		<style>
+			.c{
+				color:black;
+				height:50px;
+				width:50px;
+				padding:0px;
+				font: 35px arial, sans-serif;
+				text-align: center;
+			}
+			.t{
+				border-collapse: collapse;
+			}
+		</style>		
+		
+		<script>
+			//------------ —оздание HTML-таблицы 10*10 -----------------------------------------------
+			var table = "<table id='table1' class='t'>";
+			for(var i=0;i<10;i++) {
+				table+="<tr>";
+				for(var j=0;j<10;j++) {
+					table+="<td class='c'></td>";
+				}
+				table+="</tr>";
+			}
+			document.write(table);			
+			//----------------------------------------------------------------------------------------
+			var t1 = document.getElementById("table1");
+			//------------ «акрашивание клеток таблицы -----------------------------------------------
+			var cnt=1;
+			for(var i=1;i<9;i++, cnt++) {
+				for(var j=1;j<9;j++, cnt++) {
+					if (((cnt+2)%2)==0) {
+						t1.rows[i].cells[j].style.backgroundColor = "grey";
+					}
+				}
+			}
+			//------------- 12345678 ABCDEFGH: заполнение наименований столбцов и строк таблицы ----------
+			for (j=1;j<9;j++) {						
+			t1.rows[j].cells[0].innerHTML = 9-j;//левый столбец - 87654321
+			t1.rows[j].cells[9].innerHTML = 9-j;//правый столбец - 87654321			
+			}
+			for (i=1;i<9;i++) {						
+			t1.rows[0].cells[i].innerHTML = "&#"+String(64+i);//верх€€ строка - ABCDEFGH
+			t1.rows[9].cells[i].innerHTML = "&#"+String(64+i);//нижн€€ строка - ABCDEFGH
+			}
+			//------------- Ўахматные фигуры ------------------------------------------------------------- 
+			t1.rows[1].cells[1].innerHTML = "&#9820";//черна€ ладь€
+			t1.rows[1].cells[2].innerHTML = "&#9822";//черный конь
+			t1.rows[1].cells[3].innerHTML = "&#9821";//черный слон
+			t1.rows[1].cells[4].innerHTML = "&#9819";//черный ферзь
+			t1.rows[1].cells[5].innerHTML = "&#9818";//черный король
+			t1.rows[1].cells[6].innerHTML = "&#9821";//черный слон
+			t1.rows[1].cells[7].innerHTML = "&#9822";//черный конь
+			t1.rows[1].cells[8].innerHTML = "&#9820";//черна€ ладь€
+			for (i=1;i<9;i++) {
+			t1.rows[2].cells[i].innerHTML = "&#9823";//черна€ пешка
+			}
+			t1.rows[8].cells[1].innerHTML = "&#9814";//бела€ ладь€
+			t1.rows[8].cells[2].innerHTML = "&#9816";//белый конь
+			t1.rows[8].cells[3].innerHTML = "&#9815";//белый слон
+			t1.rows[8].cells[4].innerHTML = "&#9813";//белый ферзь
+			t1.rows[8].cells[5].innerHTML = "&#9812";//белый король
+			t1.rows[8].cells[6].innerHTML = "&#9815";//белый слон
+			t1.rows[8].cells[7].innerHTML = "&#9816";//белый конь
+			t1.rows[8].cells[8].innerHTML = "&#9814";//бела€ ладь€
+			for (i=1;i<9;i++) {
+			t1.rows[7].cells[i].innerHTML = "&#9817";//бела€ пешка
+			}					
+		</script>		
+	</body>
+</html>
