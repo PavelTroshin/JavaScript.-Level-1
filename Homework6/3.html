@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея2</title>
+    <style>
+		button {
+			float: left;
+			margin: 30px;
+		}
+		div {
+			display:flex;
+			height:auto;
+			width:auto;
+			overflow:hidden;
+			justify-content: center;
+		}	
+    </style>	
+</head>
+<body>
+	<div>
+		<img id="image" src="big_img/1.jpg"></img>
+	</div>
+	<div class="div_btns">
+		<button id="b1">Назад</button>
+		<button id="b2">Вперед</button>
+	</div>	
+
+<script>
+	var b1 = document.getElementById('b1');
+	var b2 = document.getElementById('b2');
+	b1.onclick=f;
+	b2.onclick=f;
+	
+	function f(){
+		var img = document.getElementById("image"); // img = объект картинк
+		var arr = img.src.split("/");		// в массив распарсили путь к картинке
+		var imgName = arr[arr.length-1];	// последний элемент массива arr - это имя картинки
+		var arr2 = imgName.split(".");		// распарсили имя картинки на две части: до точки и после
+		imgIndex = parseInt(arr2[0]);		// имя картинки до точки - это индекс 
+		var bId = this.id;					// считали id вызвавшей ф-цию кнопки
+		if (bId=="b2") {					// если была нажата вторая кнопка (вперед)
+			imgIndex++;						// увеличиваем индекс картинки на 1
+			if (imgIndex>3) {				// при этом если индекс получился 4, значит надо ему назначить 1, т.к. картинок всего 3
+			imgIndex=1
+			}
+		} else {							// если была нажата другая кнопка, т.е. назад
+			imgIndex--;						// уменьшаем индекс картинки на 1
+			if (imgIndex<1) {				// при этом если индекс получился 0, значит надо ему назначить 3, т.к. картинок всего 3
+			imgIndex=3
+			}			
+		}
+		img.src = "big_img/"+imgIndex+".jpg";	// в путь картинки кладем новое название, уже с измененным индексом (увеличенный на 1 или уменьшенный на 1)
+	}		
+	
+</script>
+</body>
+</html>
