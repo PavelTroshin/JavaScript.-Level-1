@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея1</title>
+</head>
+<body>
+	<h4>small images</h4>
+	<img id="image1" src="small_img/1.jpg"></img>
+	<img id="image2" src="small_img/2.jpg"></img>
+	<img id="image3" src="small_img/3.jpg"></img>	
+	<img id="image4" src="small_img/4.jpg"></img>	
+	<h4>big images</h4>
+	<img id="image" src="big_img/1.jpg"></img>
+
+<script>
+	var img1 = document.getElementById('image1');
+	var img2 = document.getElementById('image2');
+	var img3 = document.getElementById('image3');
+	var img4 = document.getElementById('image4');
+	img1.onclick=f;
+	img2.onclick=f;
+	img3.onclick=f;
+	img4.onclick=f;
+	
+	function f(){
+		var smallSrc = this.src;	//сохраняем в переменную smallSrc св-во src объекта this (т.е. того объекта, который вызвал данную ф-цию. В данном случае это <img>
+		var arr = smallSrc.split("/");	// парсим src в массив arr, используя в качестве разделителя символ "/", 
+		var bigSrc = "big_img/"+arr[arr.length-1];	// для большой картинки создаем путь, который состоит из "big_img/" и последнего элемента массива arr, т.е. названия картинки
+		var img = document.getElementById('image'); // 
+		img.src = bigSrc;	// задаем src для большой каринки
+		img.onerror=f2;	// если при загрузке больой картинки произошла ошибка, то вызываем ф-цию f2
+	}
+	
+	function f2() {
+		alert("Изображение отсутствует");
+	}
+
+</script>
+</body>
+</html>

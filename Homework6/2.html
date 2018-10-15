@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+    <style>
+		#divBasket {
+			float: none;
+		}
+		#divAllGoods {
+			display:flex;
+			height:auto;
+			width:auto;
+			overflow:hidden;
+			justify-content: center;
+		}
+		.divGoods {
+			float: left;
+			margin: 30px;
+		}
+		h4, p {
+			margin: auto;
+			text-align: center;
+		}
+		button {
+			display: block;
+			margin: auto;
+		}
+    </style>
+</head>
+<body>
+	<div id="divBasket">
+		<h4>Корзина: </h4>
+		<p id="items">0</p>
+		<p> шт.</p>
+		<p id="money">0</p>
+		<p> руб.</p>
+	</div>
+	<div id="divAllGoods">
+		<div class="divGoods">
+			<h4>Картина 1</h4>
+			<img id="image1" src="small_img/1.jpg"></img>
+			<p id="price1">1000 р.</p>
+			<button id="b1">Купить</button>
+		</div>
+		<div class="divGoods">
+			<h4>Картина 2</h4>
+			<img id="image2" src="small_img/2.jpg"></img>
+			<p id="price2">2000 р.</p>
+			<button id="b2">Купить</button>
+		</div>
+		<div class="divGoods">
+			<h4>Картина 3</h4>
+			<img id="image3" src="small_img/3.jpg"></img>
+			<p id="price3">3000 р.</p>
+			<button id="b3">Купить</button>
+		</div>
+	</div>
+	
+<script>
+	var b1 = document.getElementById('b1');
+	var b2 = document.getElementById('b2');
+	var b3 = document.getElementById('b3');
+	
+	b1.onclick=f;
+	b2.onclick=f;
+	b3.onclick=f;
+	
+	function f(){
+		var strId = this.id;	// считалы id кнопки, вызвавшей ф-цию
+		var i = strId.substring(1, strId.length);	// в переменную i записали id кнопки без первого символа, т.е. его индекс. Например для кнопки b123: i = 123
+		var objPrice = document.getElementById('price'+i);	// <p> с ценой текущего товара (с тем же индексом, что и кнопка)
+		var price = parseInt(objPrice.textContent);			// price = цена текущего товара
+			//------------- к сумме корзины прибавляем стоимость выбранного товара ----------------------------------------------------------------------------
+		var objMoney = document.getElementById('money');	// <p> с общей суммой корзины
+		var money = parseInt(objMoney.textContent)			// записали в money общую сумму корзины
+		money+=price; // увеличили сумму корзины на значение цены текущего товара price
+		objMoney.innerText=money;	// обновили общей сумму корзины в соответствующем <p>
+			//------------- количество товаров в корзине увеличили на 1 ----------------------------------------------------------------------------------------
+		var objItems = document.getElementById('items');	// <p> c количеством товаров в корзине
+		var cnt = parseInt(objItems.textContent)	// cnt = количество товаров  в корзине
+		cnt++;
+		objItems.innerText=cnt;	// обновили количество товаров в корзине в соответствующем <p> 
+	}	
+</script>
+</body>
+</html>
